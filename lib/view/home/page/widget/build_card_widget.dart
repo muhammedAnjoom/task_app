@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../../../../common/res/app_color.dart';
 import '../../../../common/utils/utils.dart';
+import '../../../../common/widget/build_new_alert.dart';
 import '../../../../models/note_model.dart';
-import '../../../../view_models/post_view_models.dart';
+import '../../../../view_models/note_view_models.dart';
 import '../add_note_page.dart';
 
 class BuildCardWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class BuildCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = Provider.of<PostViewModels>(context, listen: false);
+    final notifier = Provider.of<NoteViewModels>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Card(
@@ -73,7 +74,26 @@ class BuildCardWidget extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => notifier.deleteNote(note.noteId!),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return BuildNewAlertDialog(
+                              onYesTap: (context) async {
+                                notifier.deleteNote(note.noteId!);
+                                pop(context);
+                              },
+                              title:
+                                  "Are you sure you want to\ndelete the note?",
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
                   icon: const Icon(
                     Icons.delete,
                     color: Colors.red,

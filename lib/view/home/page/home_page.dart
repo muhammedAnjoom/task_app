@@ -6,7 +6,7 @@ import 'package:task_app/view/home/page/add_note_page.dart';
 import 'package:task_app/view/home/page/widget/build_card_widget.dart';
 
 import '../../../common/res/app_color.dart';
-import '../../../view_models/post_view_models.dart';
+import '../../../view_models/note_view_models.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PostViewModels>(builder: (context, notifier, child) {
+    return Consumer<NoteViewModels>(builder: (context, notifier, child) {
       notifier.note.sort((a, b) => a.isCompleted == 1 ? 1 : -1);
       return Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
           child: const Icon(Icons.add),
         ),
         appBar: AppBar(
-          title: const Text("Todo"),
+          title: const Text("Note"),
         ),
         body: !notifier.isLoading
             ? notifier.note.isEmpty

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/note_model.dart';
 import '../repositories/repositories.dart';
 
-class PostViewModels extends ChangeNotifier {
+class NoteViewModels extends ChangeNotifier {
   final _service = Repositories();
   bool _isLoading = false;
   List<NoteModel> _note = [];

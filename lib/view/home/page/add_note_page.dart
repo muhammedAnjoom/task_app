@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:task_app/common/utils/utils.dart';
 import 'package:task_app/common/widget/build_text_field.dart';
 import 'package:task_app/models/note_model.dart';
-import 'package:task_app/view_models/post_view_models.dart';
+import 'package:task_app/view_models/note_view_models.dart';
 
 class AddNotePage extends StatelessWidget {
   final bool? isEdit;
@@ -37,7 +37,7 @@ class AddNotePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = Provider.of<PostViewModels>(context, listen: false);
+    final notifier = Provider.of<NoteViewModels>(context, listen: false);
     if (isEdit!) {
       titleTextController.text = noteModel!.title;
       descriptionTextController.text = noteModel!.content;
