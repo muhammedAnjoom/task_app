@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_app/common/res/app_color.dart';
+import 'package:task_app/common/res/app_font.dart';
 
 import '../utils/utils.dart';
 
@@ -27,7 +28,11 @@ class BuildNewAlertDialog extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           title,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(
+              fontSize: 14,
+              fontFamily: AppFont.satoshiFont,
+              fontWeight: FontWeight.w300),
+          textAlign: TextAlign.center,
         ),
       ),
       actions: [
@@ -35,7 +40,10 @@ class BuildNewAlertDialog extends StatelessWidget {
             onPressed: () {
               pop(context);
             },
-            child: const Text("No")),
+            child: const Text(
+              "No",
+              style: TextStyle(color: AppColor.blackColor),
+            )),
         TextButton(
             onPressed: () {
               onYesTap(context);
